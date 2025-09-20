@@ -31,9 +31,9 @@ app.get("/posts/:id", (req, res) => {
 });
 
 app.post("/posts", (req, res) => {
-  posts.push({ ...req.body, id: nextId++, created: Date.now() });
-  res.status(204);
-  res.end();
+  const newPost = { ...req.body, id: nextId++, created: Date.now() };
+  posts.push(newPost);
+  res.status(201).json(newPost);  // ✅ Возвращаем созданный пост
 });
 
 app.put("/posts/:id", (req, res) => {
